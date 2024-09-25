@@ -1,0 +1,8 @@
+Title: Second Page
+
+----
+
+Text: Hello my friends on the second page!
+
+----
+
