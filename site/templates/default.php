@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d4cbcb96c8.js" crossorigin="anonymous"></script>
     <?= css('assets/css/styles.css') ?>
+    <?= css('assets/js/blockchain.jS') ?>
     <title><?= $site->title()?></title>
     
 </head>
@@ -33,5 +34,6 @@
         </header>
      <h1 class=""><i class="fa-solid fa-face-grin-tongue-wink fa-5x fa-spin p-12 text-orange-300"></i> <?= $page->title() ?></h1>
      <?= $page->text() ?>
+     <?php snippet('blockchain'); ?>
     </body>
 </html>
