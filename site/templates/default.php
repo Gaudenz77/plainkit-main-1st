@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/d4cbcb96c8.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+<!-- <script src="./blockchain.js" defer></script> -->
+    
+    <?= css('assets/js/blockchain.js') ?>
     <?= css('assets/css/styles.css') ?>
-    <?= css('assets/js/blockchain.jS') ?>
     <title><?= $site->title()?></title>
     
 </head>

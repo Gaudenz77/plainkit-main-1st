@@ -156,7 +156,7 @@ window.onload = () => {
 };
 
 /* --------------------- Ither stuff */
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
   const themeSelect = document.getElementById('themeSelect');
 
   // Listen for dropdown change
@@ -164,4 +164,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedTheme = this.value;
     document.documentElement.setAttribute('data-theme', selectedTheme);
   });
-});
+}); */
