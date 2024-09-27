@@ -1,2 +1,2 @@
 # plainkit-main-1st
- ist try plain kirby setup
+ 1st try plain kirby setup
