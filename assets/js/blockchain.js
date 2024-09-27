@@ -80,8 +80,17 @@ const blockchains = {
 // Function to create a block for the selected cryptocurrency
 function createBlockchain(action) {
   const blockData = document.getElementById('blockData').value;
-  let blockValue = parseFloat(document.getElementById('blockValue').value);
+  let blockValueInput = document.getElementById('blockValue').value;
   const blockCurrency = document.getElementById('blockCurrency').value;
+
+  // Check if blockValue is empty or not a valid number
+  if (!blockValueInput || isNaN(parseFloat(blockValueInput))) {
+    alert('Please enter a valid block value.');
+    return; // Stop form submission
+  }
+
+  // Convert the value to a number after validation
+  let blockValue = parseFloat(blockValueInput);
 
   // Modify the block value based on whether it's a buy or sell action
   if (action === 'sell') {
@@ -97,6 +106,11 @@ function createBlockchain(action) {
   blockchains[blockCurrency].addBlock(newBlock);
   displayBlockchain(blockCurrency);
 
+
+  document.getElementById('createBlockForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    createBlockchain();
+  });
   // Clear the form after submission
   document.getElementById('createBlockForm').reset();
   

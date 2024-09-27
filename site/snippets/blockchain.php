@@ -5,7 +5,7 @@
         <!-- Left Column: Form for Creating Blockchain -->
         <div class="lg:w-1/4 w-full bg-white p-4 rounded shadow-lg">
           <h4 class="text-xl font-bold mb-4">Create a Block</h4>
-          <form id="createBlockForm">
+          <form id="createBlockForm" onsubmit="return false;">
             <div class="mb-3">
               <label for="blockData" class="block text-sm font-medium text-gray-700">Block Data:</label>
               <textarea class="w-full border border-gray-300 rounded-lg p-2" id="blockData" required></textarea>
@@ -25,12 +25,15 @@
             </div>
             <div class="text-center">
               <!-- Buy and Sell buttons -->
-              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4" type="button"  onclick="createBlockchain('buy'); alert('buy confirmed')">
+              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4" 
+                type="button" onclick="handleTransaction('buy')">
                 Buy
               </button>
-              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 ml-2" type="button" onclick="createBlockchain('sell'); alert('sell confirmed')">
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 ml-2" 
+                      type="button" onclick="handleTransaction('sell')">
                 Sell
               </button>
+
             </div>
           </form>
 
