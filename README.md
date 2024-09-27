@@ -28,6 +28,7 @@
 * [Github](https://github.com/CyrSen/MP_MOX)
 * [Fontawesome](https://fontawesome.com/)
 * [ChatGPT](https://openai.com/chatgpt)
+* [tailwind.css](https://tailwindcss.com)
 * [Visual Studio Code](https://code.visualstudio.com/)introduction/)
 * Internet for research
 * imagination 
