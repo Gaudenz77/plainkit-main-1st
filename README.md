@@ -3,8 +3,7 @@
 
  # plainkit-main-1st Kirby CMS in use , test blockchain.js as include
 
-
-## Project context
+# Further information incoming...
 
 
 ### Analysis:
