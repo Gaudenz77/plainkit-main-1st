@@ -1,9 +1,9 @@
 <script src="../../assets/js/blockchain.js" defer></script>
  <!-- Main Content -->
  <div class="container mx-auto mt-8 mb-32">
-      <div class="flex flex-col lg:flex-row lg:space-x-6">
+      <div class="flex flex-col lg:flex-row justify-center">
         <!-- Left Column: Form for Creating Blockchain -->
-        <div class="lg:w-1/4 w-full bg-white p-4 rounded shadow-lg">
+        <div class="lg:w-1/4 w-full bg-white p-8 rounded shadow-lg">
           <h4 class="text-xl font-bold mb-4">Create a Block</h4>
           <form id="createBlockForm" onsubmit="return false;">
             <div class="mb-3">
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Central Column: Blockchain Display Tables -->
-        <div class="lg:w-2/3 w-full mt-6 lg:mt-0 p-4 rounded shadow-lg">
+        <div class="lg:w-3/4 w-full mt-6 lg:mt-0 rounded shadow-lg p-8">
           <h3 class="text-xl font-bold text-center mb-4">Bitcoin Blockchain</h3>
           <div class="overflow-x-auto">
             <div id="bitcoinBlockchainDisplay" class="mt-3"></div>
