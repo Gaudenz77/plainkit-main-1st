@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <!-- <script src="./blockchain.js" defer></script> -->
-
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <?= css('assets/js/blockchain.js') ?>
+<!-- <script src="./blockchain.js" defer></script> -->
+    
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+    <?= js('assets/js/blockchain.js') ?>
     <?= css('assets/css/styles.css') ?>
-    <title><?= $site->title() ?></title>
-
+    <title><?= $site->title()?></title>
+    
 </head>
 
 <body class="mt-0">

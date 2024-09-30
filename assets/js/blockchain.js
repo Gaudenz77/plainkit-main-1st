@@ -68,7 +68,24 @@ class Blockchain {
     return storedBlockchain ? JSON.parse(storedBlockchain).map(Block.fromObject) : null;
   }
 }
+function handleTransaction(action) {
+  const blockValueInput = document.getElementById('blockValue').value;
 
+  // Check if blockValue is empty or not a valid number
+  if (!blockValueInput || isNaN(parseFloat(blockValueInput))) {
+    alert('Please enter a valid block value.'); // Show error alert if validation fails
+    return;
+  }
+
+  // If the value is valid, create the block and show the confirmation alert
+  createBlockchain(action);
+
+  if (action === 'buy') {
+    alert('Buy confirmed');
+  } else if (action === 'sell') {
+    alert('Sell confirmed');
+  }
+}
 // Initialize blockchains for each cryptocurrency
 const blockchains = {
   bitcoin: new Blockchain("bitcoin"),
@@ -107,13 +124,13 @@ function createBlockchain(action) {
   displayBlockchain(blockCurrency);
 
 
-  document.getElementById('createBlockForm').addEventListener('submit', function(event) {
+  document.getElementById('createBlockForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission
     createBlockchain();
   });
   // Clear the form after submission
   document.getElementById('createBlockForm').reset();
-  
+
 }
 
 
