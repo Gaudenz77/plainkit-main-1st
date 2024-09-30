@@ -1,7 +1,7 @@
 const sha256 = CryptoJS.SHA256;
 
 class Block {
-  constructor(index, timestamp, data, previousHash = '') {
+  constructor(index, timestamp, data, previousHash = "") {
     this.index = index;
     this.timestamp = timestamp;
     this.data = data;
@@ -13,10 +13,10 @@ class Block {
   calculateHash() {
     return sha256(
       this.index +
-      this.timestamp +
-      JSON.stringify(this.data) +
-      this.previousHash +
-      this.nonce
+        this.timestamp +
+        JSON.stringify(this.data) +
+        this.previousHash +
+        this.nonce
     ).toString();
   }
 
@@ -30,7 +30,12 @@ class Block {
   }
 
   static fromObject(obj) {
-    const newBlock = new Block(obj.index, obj.timestamp, obj.data, obj.previousHash);
+    const newBlock = new Block(
+      obj.index,
+      obj.timestamp,
+      obj.data,
+      obj.previousHash
+    );
     newBlock.hash = obj.hash;
     newBlock.nonce = obj.nonce;
     return newBlock;
@@ -45,7 +50,7 @@ class Blockchain {
   }
 
   createGenesisBlock() {
-    return new Block(0, new Date().toLocaleString(), 'Genesis Block', '0');
+    return new Block(0, new Date().toLocaleString(), "Genesis Block", "0");
   }
 
   getLatestBlock() {
@@ -65,55 +70,35 @@ class Blockchain {
 
   retrieveBlockchain() {
     const storedBlockchain = localStorage.getItem(this.currency);
-    return storedBlockchain ? JSON.parse(storedBlockchain).map(Block.fromObject) : null;
+    return storedBlockchain
+      ? JSON.parse(storedBlockchain).map(Block.fromObject)
+      : null;
   }
 }
-function handleTransaction(action) {
-  const blockValueInput = document.getElementById('blockValue').value;
 
-  // Check if blockValue is empty or not a valid number
-  if (!blockValueInput || isNaN(parseFloat(blockValueInput))) {
-    alert('Please enter a valid block value.'); // Show error alert if validation fails
-    return;
-  }
-
-  // If the value is valid, create the block and show the confirmation alert
-  createBlockchain(action);
-
-  if (action === 'buy') {
-    alert('Buy confirmed');
-  } else if (action === 'sell') {
-    alert('Sell confirmed');
-  }
-}
 // Initialize blockchains for each cryptocurrency
 const blockchains = {
   bitcoin: new Blockchain("bitcoin"),
   ethereum: new Blockchain("ethereum"),
   litecoin: new Blockchain("litecoin"),
-  poorcoin: new Blockchain("poorcoin")
+  poorcoin: new Blockchain("poorcoin"),
 };
 
-// Function to create a block for the selected cryptocurrency
+// Function to create and add a block for the selected cryptocurrency
 function createBlockchain(action) {
-  const blockData = document.getElementById('blockData').value;
-  let blockValueInput = document.getElementById('blockValue').value;
-  const blockCurrency = document.getElementById('blockCurrency').value;
+  const blockData = document.getElementById("blockData").value;
+  const blockValueInput = parseFloat(
+    document.getElementById("blockValue").value
+  );
+  const blockCurrency = document.getElementById("blockCurrency").value;
 
-  // Check if blockValue is empty or not a valid number
-  if (!blockValueInput || isNaN(parseFloat(blockValueInput))) {
-    alert('Please enter a valid block value.');
-    return; // Stop form submission
+  if (isNaN(blockValueInput)) {
+    alert("Please enter a valid block value.");
+    return;
   }
 
-  // Convert the value to a number after validation
-  let blockValue = parseFloat(blockValueInput);
-
-  // Modify the block value based on whether it's a buy or sell action
-  if (action === 'sell') {
-    blockValue = -Math.abs(blockValue);  // Ensure the value is negative for sell
-  }
-
+  const blockValue =
+    action === "sell" ? -Math.abs(blockValueInput) : blockValueInput;
   const newBlock = new Block(
     blockchains[blockCurrency].chain.length,
     new Date().toLocaleString(),
@@ -123,67 +108,83 @@ function createBlockchain(action) {
   blockchains[blockCurrency].addBlock(newBlock);
   displayBlockchain(blockCurrency);
 
-
-  document.getElementById('createBlockForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
-    createBlockchain();
-  });
   // Clear the form after submission
-  document.getElementById('createBlockForm').reset();
-
+  document.getElementById("createBlockForm").reset();
 }
 
+// Handle buy/sell transaction
+function handleTransaction(action) {
+  createBlockchain(action);
+  alert(action === "buy" ? "Buy confirmed" : "Sell confirmed");
+}
 
-// Function to display the blockchain for the selected cryptocurrency
-function displayBlockchain(currency) {
-  const blockchainDisplay = document.getElementById(`${currency}BlockchainDisplay`);
-  blockchainDisplay.innerHTML = ''; // Clear previous display
-
-  const table = document.createElement('table');
-  table.className = 'table table-striped-columns myTable';
-
-  const headerRow = table.insertRow(0);
-  const headers = ['Block Number', 'Timestamp', 'Data', 'Hash', 'Previous Hash'];
-
-  headers.forEach(headerText => {
-    const header = document.createElement('th');
+// Function to create table headers
+function createTableHeaders(headers) {
+  const headerRow = document.createElement("tr");
+  headers.forEach((headerText) => {
+    const header = document.createElement("th");
     header.textContent = headerText;
     headerRow.appendChild(header);
   });
+  return headerRow;
+}
+
+// Function to create table row
+function createTableRow(rowData) {
+  const row = document.createElement("tr");
+  rowData.forEach((data) => {
+    const cell = document.createElement("td");
+    cell.textContent = data;
+    row.appendChild(cell);
+  });
+  return row;
+}
+
+// Function to display the blockchain for the selected cryptocurrency
+function displayBlockchain(currency) {
+  const blockchainDisplay = document.getElementById(
+    `${currency}BlockchainDisplay`
+  );
+  blockchainDisplay.innerHTML = ""; // Clear previous display
+
+  const table = document.createElement("table");
+  table.className = "table table-striped-columns myTable";
+  table.appendChild(
+    createTableHeaders([
+      "Block Number",
+      "Timestamp",
+      "Data",
+      "Hash",
+      "Previous Hash",
+    ])
+  );
 
   let totalValue = 0;
-
-  for (const block of blockchains[currency].chain) {
-    const row = table.insertRow(-1);
-    const rowData = [block.index, block.timestamp, JSON.stringify(block.data), block.hash, block.previousHash];
-
-    // Summing the block values if the block has a value field
-    if (block.data && block.data.value) {
-      totalValue += parseFloat(block.data.value) || 0;
-    }
-
-    rowData.forEach((data, index) => {
-      const cell = row.insertCell(index);
-      cell.textContent = data;
-    });
-  }
+  blockchains[currency].chain.forEach((block) => {
+    const rowData = [
+      block.index,
+      block.timestamp,
+      JSON.stringify(block.data),
+      block.hash,
+      block.previousHash,
+    ];
+    totalValue += block.data?.value || 0;
+    table.appendChild(createTableRow(rowData));
+  });
 
   // Adding a row to display the total value of the blockchain
-  const totalRow = table.insertRow(-1);
-  const totalCell = totalRow.insertCell(0);
-  totalCell.colSpan = 5;
-  totalCell.textContent = `Total Value: ${totalValue} ${currency.toUpperCase()}`;
+  const totalRow = createTableRow([
+    `Total Value: ${totalValue} ${currency.toUpperCase()}`,
+  ]);
+  totalRow.cells[0].colSpan = 5;
+  table.appendChild(totalRow);
 
   blockchainDisplay.appendChild(table);
 }
 
-
 // Display all blockchains on page load
 window.onload = () => {
-  displayBlockchain('bitcoin');
-  displayBlockchain('ethereum');
-  displayBlockchain('litecoin');
-  displayBlockchain('poorcoin');
+  Object.keys(blockchains).forEach(displayBlockchain);
 };
 
 /* --------------------- Ither stuff */
