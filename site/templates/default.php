@@ -21,7 +21,7 @@
     <a href="<?= $site->url() ?>" class="logo"><?= $site->title() ?></a>
 
     <div class=" text-center">
-    <i class="fa-brands fa-bitcoin fa-8x"></i>    
+    <i class="fa-brands fa-bitcoin fa-8x fa-spin" style="--fa-animation-duration: 5s;"></i>    
     </div>
     
 
