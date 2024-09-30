@@ -1,4 +1,4 @@
-<script src="../../assets/js/blockchain.js" defer></script>
+<!-- <script src="../../assets/js/blockchain.js" defer></script> -->
  <!-- Main Content -->
  <div class="container mx-auto mt-8 mb-32">
       <div class="flex flex-col lg:flex-row justify-center">
