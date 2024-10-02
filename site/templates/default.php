@@ -17,11 +17,11 @@
 
 <body class="mt-0">
 <header class="header m-12 mt-8">
-<div class="midLogo">
-    <a href="<?= $site->url() ?>" class="logo"><?= $site->title() ?></a>
+<div>
+    <a href="<?= $site->url() ?>" class="midLogo"><?= $site->title() ?></a>
 
     <div class=" text-center">
-    <i class="fa-brands fa-bitcoin fa-8x fa-spin" style="--fa-animation-duration: 5s;"></i>    
+        <i class="fa-brands fa-bitcoin fa-8x fa-spin" style="--fa-animation-duration: 5s;"></i>    
     </div>
     
 

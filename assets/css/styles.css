@@ -847,3 +847,8 @@ video {
     flex-direction: row;
   }
 }
+
+.midLogo {
+  font-size:2rem;
+  outline: invert;
+}
