@@ -8,7 +8,7 @@
 <!-- <script src="./blockchain.js" defer></script> -->
 <script src="https://kit.fontawesome.com/d4cbcb96c8.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <?= js('assets/js/blockchain.js') ?>
     <?= css('assets/css/styles.css') ?>
     <title><?= $site->title()?></title>

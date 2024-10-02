@@ -72,7 +72,7 @@
     <div class="bg-white p-6 rounded-lg shadow-lg w-full lg:w-2/3">
       <form>
         <div class="mb-4">
-          <label for="floatingInput" class="block text-sm font-medium text-gray-700">Email Address</label>
+          <label for="floatingInput" class="block text-sm font-medium text-gray-700">Email Address Test</label>
           <input
             type="email"
             class="w-full border border-gray-300 rounded-lg p-2"
